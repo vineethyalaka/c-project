@@ -1,0 +1,53 @@
+Create table vehicle
+(
+Id int primary key Identity(1,1),
+Year int CHECK (Year>=1950 and year<=2050) Not Null,
+Make varchar(50) Not Null,
+Model varchar(50) Not Null
+)
+
+Create procedure Insertveh
+(
+@Year int,
+@Make varchar(50),
+@Model varchar(50)
+)
+as
+Begin
+	Insert into vehicle values(@Year,@Make,@model)
+End
+
+
+CREATE PROCEDURE Updateveh
+(
+@id int,
+@year int,
+@make varchar(50),
+@model varchar(50)
+)
+as
+Begin
+	UPDATE vehicle SET Year=@Year, Make=@Make, Model=@Model WHERE Id=@id
+END
+
+
+DROP PROCEDURE Updateveh
+
+CREATE PROCEDURE Selectveh
+(
+@id int
+)
+AS
+BEGIN
+	SELECT * FROM vehicle WHERE Id=@id
+END
+
+
+CREATE PROCEDURE Deleteveh
+(
+	@id int
+)
+AS
+BEGIN
+	DELETE FROM vehicle WHERE Id=@id
+END

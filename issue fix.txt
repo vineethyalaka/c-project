@@ -1,0 +1,58 @@
+Just try it by following below steps to solve the issue.
+
+1.Open up IIS Manager.
+
+2.Add the website by right clicking on "Default website" and choose "Add application".
+
+3.Enter any name as alias type and the load that website in the physical path and click OK.
+
+4.Then go to the Features View of that Loaded Website and double click on the "Directory Browsing".
+
+5.Click on "Actions" work space and change the "Disable" state to "Enable" state.
+
+6.Then Refresh the Default Website.
+
+7.Open the Visual Studio and go to that website. it will ask for reload , then click "yes".
+
+8.it will add the following code in the web.config file.
+
+1
+2
+3
+<system.webServer>
+   <directoryBrowse enabled="true" />
+</system.webServer>
+9.Now run and see the error will disappear.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Or try by below methods.
+
+This problem occurs because the Web site does not have the Directory Browsing feature enabled, and the default document is not configured. To resolve this problem, use one of the following methods. To resolve this problem, follow the steps in Method 1 as mentioned in the MS Support page and it’s the recommended method.
+
+Method 1: Enable the Directory Browsing feature in IIS (Recommended)
+
+Start IIS Manager. To do this, click Start, click Run, type inetmgr.exe, and then click OK.
+In IIS Manager, expand server name, expand Web sites, and then click the website that you want to modify.
+In the Features view, double-click Directory Browsing.
+In the Actions pane, click Enable.
+If that does not work for, you might be having different problem than just a Directory listing issue. So follow the below step,
+
+Method 2: Add a default document
+
+To resolve this problem, follow these steps:
+
+Start IIS Manager. To do this, click Start, click Run, type inetmgr.exe, and then click OK.
+In IIS Manager, expand server name, expand Web sites, and then click the website that you want to modify.
+In the Features view, double-click Default Document.
+In the Actions pane, click Enable.
+In the File Name box, type the name of the default document, and then click OK.
+Method 3: Enable the Directory Browsing feature in IIS Express
+
+Note This method is for the web developers who experience the issue when they use IIS Express.
+
+Follow these steps:
+
+Open a command prompt, and then go to the IIS Express folder on your computer. For example, go to the following folder in a command prompt: C:\Program Files\IIS Express
+Type the following command, and then press Enter:
+appcmd set config /section:system.webServer/directoryBrowse /enabled:true
