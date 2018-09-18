@@ -1,0 +1,102 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+
+/// <summary>
+/// RESTful web service that performs CRUD operations
+/// </summary>
+//[WebService(Namespace = "http://tempuri.org/")]
+//[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+// To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+// [System.Web.Script.Services.ScriptService]
+public class WebService : System.Web.Services.WebService
+{
+
+    public WebService()
+    {
+
+        //Uncomment the following line if using designed components 
+        //InitializeComponent(); 
+    }
+
+    vehicle vehicle;
+
+    [WebMethod]
+    public string InsertVehicle(int year,string make,string model)
+    {
+        baseveh(year, make, model);
+        if(year<1950 || year > 2050)
+        {
+            return "Please enter a year in between 1950 and 2050" + "Vehicle details have not been added";
+        }
+        else
+        {
+            string datains = vehicle.Insert();
+            if (datains == "Data added")
+                return "Vehicle details have been added";
+            else
+                return "Vehicle details have not been added";
+
+        }
+        
+    }
+
+    [WebMethod]
+    public string UpdateVehicle(int id,int year,string make,string model)
+    {
+        vehicle = new vehicle
+        {
+            Id = id,
+            Year = year,
+            Make = make,
+            Model = model
+        };
+
+        string status = vehicle.Update(id);
+
+            if (status == "Data updated")
+                return "Vehicle details have been updated.";
+            else
+                return "Vehicle details have not Updated.";
+        
+    }
+
+    [WebMethod]
+    public string DeleteVehicle(int id)
+    {
+        vehicle = new vehicle();
+        string status = vehicle.Delete(id);
+
+        if (status == "Data deleted")
+            return "Vehicle details have been deleted";
+        else
+            return "Vehicle details have not been deleted";
+    }
+
+    [WebMethod]
+    public List<vehicle> SelectVehicle(int id)
+    {
+        vehicle = new vehicle();
+        List<vehicle> listveh = vehicle.Select(id);
+
+        if (listveh != null)
+            return listveh;
+        else
+            return listveh;
+    }
+
+
+    //base vehicle class
+    private void baseveh(int year,string make, string model)
+    {
+        vehicle = new vehicle
+        {
+            Year = year,
+            Make = make,
+            Model = model
+        };
+    }
+
+}
