@@ -13,4 +13,8 @@ Model varchar(50) Not Null
 
 Connect the database to the Api Model and name it as you choose. Create the Api using Data Model.
 
+Install NuGet packages for Microsoft.AspNet.WebApi.Client 5.2.6
+
+and NuGet packages for Alertify JS
+
 Run the C# code.
