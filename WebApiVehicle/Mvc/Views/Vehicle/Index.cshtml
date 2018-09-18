@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Mvc.Models.MvcVehicleModel>
+
+@{
+    ViewBag.Title = "Vehicle Store";
+}
+
+<h2>Vehicle Details</h2>
+
+<p>
+    <a href="@Url.Action("AddOrEdit","Vehicle")" class="btn btn-default"><i class="fade fa-plus"></i> Create New </a> 
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Make)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Make)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            <!--Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+        Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        Html.ActionLink("Delete", "Delete", new { id = item.Id })-->
+            <a href="@Url.Action("AddorEdit", "Vehicle", new {id = item.Id})" class="btn">Edit</a> |
+            <a href="@Url.Action("delete", "Vehicle", new {id = item.Id})" class="btn">Delete</a> 
+
+        </td>
+    </tr>
+}
+
+</table>
+
+@section scripts{
+    <script>
+        $(Function () {
+            var successMessage = '@TempData["Data has been inserted"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+
+        });
+    </script>
+    
+    }

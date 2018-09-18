@@ -1,0 +1,42 @@
+﻿@model Mvc.Models.MvcVehicleModel
+@{
+    ViewBag.Title = "AddOrEdit";
+}
+
+<h2>AddOrEdit</h2>
+
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.Id)
+
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.Year)
+            @Html.EditorFor(Model => Model.Year)
+            @Html.ValidationMessageFor(Model => Model.Year)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.Make)
+            @Html.EditorFor(Model => Model.Make)
+            @Html.ValidationMessageFor(Model => Model.Make)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.Model)
+            @Html.EditorFor(Model => Model.Model)
+            @Html.ValidationMessageFor(Model => Model.Model)
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn" />
+            <input type="reset" value="Reset" class="btn" />
+        </div>
+    }
+</div>
+
+@section scripts{
+    @Scripts.Render("~/ bundles / jqueryval");
+    }
+
