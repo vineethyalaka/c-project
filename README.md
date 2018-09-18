@@ -11,10 +11,10 @@ Make varchar(50) Not Null,
 Model varchar(50) Not Null
 )
 
+Download WebApiVehicle C# code after the following steps run the code.
+
 Connect the database to the Api Model and name it as you choose. Create the Api using Data Model.
 
 Install NuGet packages for Microsoft.AspNet.WebApi.Client 5.2.6
 
 and NuGet packages for Alertify JS
-
-Run the C# code.
